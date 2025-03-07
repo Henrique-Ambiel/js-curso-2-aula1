@@ -1,4 +1,5 @@
 let secretNumber = generateSecretNumber();
+let attempt = 1;
 
 // Função que exibe um texto em uma tag HTML
 function displayTextOnScreen(tag, text){ 
@@ -13,7 +14,19 @@ displayTextOnScreen('p', 'Escolha um número de 1 a 10');
 function verifyKick()
 {
     let kick = document.querySelector('input').value;
-    console.log(kick == secretNumber);
+   
+    if(kick == secretNumber){
+        displayTextOnScreen('h1', 'VOCÊ ACERTOU!!!');
+        attemptWord = attempt > 1 ? 'Tentativas' : 'Tentativa';
+        let attemptMenssage = `Você acertou o número com ${attempt} ${attemptWord}`;
+        displayTextOnScreen('p', attemptMenssage);
+        
+    } else if(kick < secretNumber){
+        displayTextOnScreen('p', 'O número secreto é maior');
+    } else {
+        displayTextOnScreen('p', 'O número secreto é menor');
+    }
+    attempt++;
 }
 
 // Funbção que gera o número secreto
