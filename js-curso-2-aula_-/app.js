@@ -20,6 +20,7 @@ function verifyKick()
         attemptWord = attempt > 1 ? 'Tentativas' : 'Tentativa';
         let attemptMenssage = `Você acertou o número com ${attempt} ${attemptWord}`;
         displayTextOnScreen('p', attemptMenssage);
+        document.getElementById('reiniciar').removeAttribute('disabled');
         
     } else if(kick < secretNumber){
         displayTextOnScreen('p', 'O número secreto é maior');
@@ -27,9 +28,15 @@ function verifyKick()
         displayTextOnScreen('p', 'O número secreto é menor');
     }
     attempt++;
+    cleanCamp();
 }
 
 // Funbção que gera o número secreto
 function generateSecretNumber(){
     return parseInt(Math.random() * 10 + 1);
+}
+
+function cleanCamp() {
+    kick = document.querySelector('input');
+    kick.value = '';
 }
