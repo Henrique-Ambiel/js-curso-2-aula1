@@ -1,3 +1,5 @@
+let numbers = [];
+let limitNumber = 10;
 let secretNumber = generateSecretNumber();
 let attempt = 1;
 
@@ -39,7 +41,21 @@ function verifyKick()
 
 // Função que gera o número secreto
 function generateSecretNumber(){
-    return parseInt(Math.random() * 10 + 1);
+    let secretNumber = parseInt(Math.random() * limitNumber + 1);
+    let quantityNumbers = numbers.length;
+
+    //Se todos os números da lista já foram usados, limpa o array de números 
+    if(quantityNumbers >= limitNumber){
+        numbers = [];
+    }
+
+    if(numbers.includes(secretNumber)){
+        return generateSecretNumber(); //Chamada recursiva para gerar um novo número caso o número já tenha sido usado
+    }else{
+        numbers.push(secretNumber); //Adiciona o número gerado ao array de números usados
+        console.log(numbers);
+        return secretNumber;
+    }
 }
 
 //Função que limpa o campo de input
